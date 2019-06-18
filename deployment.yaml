@@ -61,7 +61,7 @@ spec:
           protocol: TCP
         volumeMounts:
         - mountPath: /home
-          name: shell-volume
+          name: shell-data
         livenessProbe:
           httpGet:
             path: /
@@ -69,5 +69,18 @@ spec:
           initialDelaySeconds: 300
           timeoutSeconds: 30
       volumes:
-      - name: shell-volume
-        emptyDir: {}
+      - name: shell-data
+        persistentVolumeClaim:
+          claimName: shell-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: shell-pvc
+  namespace: tools
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
