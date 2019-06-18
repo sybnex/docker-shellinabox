@@ -20,10 +20,10 @@ ADD files/user-css.tar.gz /
 
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
     chmod 755 /etc && \
-    apk --no-cache add shadow util-linux coreutils grep bash bash-completion openssl curl openssh-client sudo shellinabox python3 && \
+    apk --no-cache add shadow util-linux coreutils grep bash bash-completion openssl curl openssh-client sudo shellinabox py-pip && \
     apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev make && \
-    pip3 install --upgrade pip && \
-    pip3 install azure-cli --no-cache-dir && \
+    pip install --upgrade pip && \
+    pip install azure-cli --no-cache-dir && \
     apk del --purge build && \
     echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
