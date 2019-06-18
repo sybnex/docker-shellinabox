@@ -7,5 +7,23 @@ stages:
       tag: sybex/shellinabox
       pushRemote: true
       registry: index.docker.io
+- name: deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
+    env:
+      SIAB_SSL: "false"
+    envFrom:
+    - sourceName: shell-cred
+      sourceKey: SIAB_HOME
+    - sourceName: shell-cred
+      sourceKey: SIAB_USER
+    - sourceName: shell-cred
+      sourceKey: SIAB_PASSWORD
 timeout: 60
-notification: {}
+notification:
+  recipients:
+  - recipient: sybnex@gmail.com
+    notifier: local:n-zdq9d
+  condition:
+  - Failed
