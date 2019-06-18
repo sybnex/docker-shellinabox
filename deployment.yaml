@@ -31,6 +31,9 @@ spec:
       containers:
       - name: shell
         image: sybex/shellinabox:latest
+        env:
+        - name: SIAB_SSL
+          value: "false"
         resources:
           limits:
             cpu: 1000m

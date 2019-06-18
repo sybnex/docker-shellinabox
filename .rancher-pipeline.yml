@@ -11,8 +11,6 @@ stages:
   steps:
   - applyYamlConfig:
       path: ./deployment.yaml
-    env:
-      SIAB_SSL: "false"
     envFrom:
     - sourceName: shell-cred
       sourceKey: SIAB_HOME
