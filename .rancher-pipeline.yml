@@ -11,13 +11,6 @@ stages:
   steps:
   - applyYamlConfig:
       path: ./deployment.yaml
-    envFrom:
-    - sourceName: shell-cred
-      sourceKey: SIAB_HOME
-    - sourceName: shell-cred
-      sourceKey: SIAB_USER
-    - sourceName: shell-cred
-      sourceKey: SIAB_PASSWORD
 timeout: 60
 notification:
   recipients:

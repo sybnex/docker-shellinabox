@@ -34,6 +34,21 @@ spec:
         env:
         - name: SIAB_SSL
           value: "false"
+        - name: SIAB_HOME
+          valueFrom:
+            secretKeyRef:
+              name: shell-cred
+              key: homedir
+        - name: SIAB_USER
+          valueFrom:
+            secretKeyRef:
+              name: shell-cred
+              key: username
+        - name: SIAB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: shell-cred
+              key: password
         resources:
           limits:
             cpu: 1000m
