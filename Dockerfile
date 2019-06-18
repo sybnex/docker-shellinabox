@@ -18,12 +18,13 @@ ENV SIAB_USERCSS="Normal:+/etc/shellinabox/options-enabled/00+Black-on-White.css
 
 ADD files/user-css.tar.gz /
 
-
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
     chmod 755 /etc && \
-    apk update && \
-    apk upgrade && \
-    apk add --update shadow util-linux pciutils coreutils binutils findutils grep bash bash-completion openssl curl openssh-client sudo shellinabox && rm -rf /var/cache/apk/* && \
+    apk --no-cache add shadow util-linux pciutils coreutils binutils findutils grep bash bash-completion openssl curl openssh-client sudo shellinabox python3 && \
+    apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev make && \
+    pip3 install --upgrade pip && \
+    pip3 install azure-cli --no-cache-dir && \
+    apk del --purge build && \
     echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 EXPOSE 4200
