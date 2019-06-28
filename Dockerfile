@@ -21,11 +21,10 @@ ADD files/user-css.tar.gz /
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
     chmod 755 /etc && \
     apk --no-cache add shadow util-linux coreutils grep bash bash-completion openssl curl openssh-client sudo shellinabox git py-pip docker && \
-    # apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev make && \
-    # pip install --upgrade pip && \
-    # pip install azure-cli --no-cache-dir && \
-    curl -L https://aka.ms/InstallAzureCli | bash && \
-    # apk del --purge build && \
+    apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev make && \
+    pip install --upgrade pip && \
+    pip install azure-cli --no-cache-dir && \
+    apk del --purge build && \
     curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     chmod +x kubectl && \
     mv kubectl /usr/bin/ && \
