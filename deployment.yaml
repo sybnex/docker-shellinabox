@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: shell
-        image: sybex/shellinabox:latest
+        image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
         env:
         - name: SIAB_SSL
           value: "false"
