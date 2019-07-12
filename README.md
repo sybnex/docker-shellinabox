@@ -1,3 +1,6 @@
+![alt text](https://badgen.net/docker/pulls/sybex/shellinabox)
+![alt text](https://badgen.net/github/issues/sybnex/docker-shellinabox)
+
 # docker-shellinabox
 shellinabox for docker based on alpine linux
 
