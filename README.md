@@ -1,3 +1,4 @@
+![alt text](https://badgen.net/badge/jenkins/sucess/green)
 ![alt text](https://badgen.net/docker/pulls/sybex/shellinabox)
 ![alt text](https://badgen.net/github/issues/sybnex/docker-shellinabox)
 
