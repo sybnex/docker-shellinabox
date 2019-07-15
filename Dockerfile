@@ -28,7 +28,7 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
     curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     chmod +x kubectl && mv kubectl /usr/bin/ && \
     curl -L https://git.io/get_helm.sh | bash && \
-    curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.12.3/terraform_0.12.3_linux_amd64.zip && \
+    curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.12.4/terraform_0.12.4_linux_amd64.zip && \
     unzip terraform.zip && rm terraform.zip && \
     chmod +x terraform && mv terraform /usr/bin/ && \
     echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
