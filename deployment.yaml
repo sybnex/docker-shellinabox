@@ -4,8 +4,7 @@ metadata:
   name: shell-service
   namespace: tools
   labels:
-    name: shell
-    kubernetes.io/cluster-service: "true"
+    app: shell
 spec:
   ports:
   - name: http
@@ -13,7 +12,7 @@ spec:
     protocol: TCP
     targetPort: 4200
   selector:
-    name: shell
+    app: shell
 ---
 apiVersion: apps/v1
 kind: Deployment
