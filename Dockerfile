@@ -34,6 +34,7 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
     curl -L https://github.com/drone/drone-cli/releases/download/v1.1.2/drone_linux_amd64.tar.gz | tar zx && \
     install -t /usr/local/bin drone && \
     mkdir /var/lib/docker && chown $SIAB_USERID:$SIAB_GROUPID /var/lib/docker && \
+    mkdir /var/run/docker && chown $SIAB_USERID:$SIAB_GROUPID /var/run/docker && \
     echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 EXPOSE 4200
