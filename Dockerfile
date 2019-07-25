@@ -33,6 +33,8 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
     chmod +x terraform && mv terraform /usr/bin/ && \
     curl -L https://github.com/drone/drone-cli/releases/download/v1.1.2/drone_linux_amd64.tar.gz | tar zx && \
     install -t /usr/local/bin drone && \
+    curl -L -o klar https://github.com/optiopay/klar/releases/download/v2.4.0/klar-2.4.0-linux-amd64 && \
+    chmod +x klar && mv klar /usr/bin/ && \
     mkdir /var/lib/docker && chown $SIAB_USERID:$SIAB_GROUPID /var/lib/docker && \
     mkdir /var/run/docker && chown $SIAB_USERID:$SIAB_GROUPID /var/run/docker && \
     echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
