@@ -69,6 +69,27 @@ spec:
             port: 4200
           initialDelaySeconds: 300
           timeoutSeconds: 30
+      - image: docker:18.06.3-dind
+        imagePullPolicy: Always
+        name: dind
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: true
+          capabilities: {}
+          privileged: true
+          procMount: Default
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: dockerhub
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
       volumes:
       - name: shell-data
         persistentVolumeClaim:
