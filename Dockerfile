@@ -28,10 +28,10 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
     curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     chmod +x kubectl && mv kubectl /usr/bin/ && \
     curl -L https://git.io/get_helm.sh | bash && \
-    curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.12.4/terraform_0.12.4_linux_amd64.zip && \
+    curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.12.6/terraform_0.12.6_linux_amd64.zip && \
     unzip terraform.zip && rm terraform.zip && \
     chmod +x terraform && mv terraform /usr/bin/ && \
-    curl -L https://github.com/drone/drone-cli/releases/download/v1.1.2/drone_linux_amd64.tar.gz | tar zx && \
+    curl -L https://github.com/drone/drone-cli/releases/download/v1.1.4/drone_linux_amd64.tar.gz | tar zx && \
     install -t /usr/local/bin drone && \
     curl -L -o klar https://github.com/optiopay/klar/releases/download/v2.4.0/klar-2.4.0-linux-amd64 && \
     chmod +x klar && mv klar /usr/bin/ && \
