@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: shell
-        image: sybex/shellinabox:1.1.${DRONE_BUILD_NUMBER}
+        image: sybex/shellinabox:1.2.${DRONE_BUILD_NUMBER}
         env:
         - name: SIAB_SSL
           value: "false"

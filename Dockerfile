@@ -16,11 +16,11 @@ ENV SIAB_USERCSS="Normal:+/etc/shellinabox/options-enabled/00+Black-on-White.css
   SIAB_PKGS=none \
   SIAB_SCRIPT=none
 
-ADD files/user-css.tar.gz /
+COPY files/* /
 
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
     chmod 755 /etc && \
-    apk --no-cache add shadow certbot openvpn tmux util-linux coreutils grep bash tree bash-completion openssl curl openssh-client sudo shellinabox git py-pip docker && \
+    apk --no-cache add shadow certbot tmux util-linux coreutils grep bash tree bash-completion openssl curl openssh-client sudo shellinabox git py-pip docker && \
     apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev make && \
     pip install --upgrade pip && \
     pip install azure-cli --no-cache-dir && \
@@ -39,6 +39,5 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
 
 EXPOSE 4200
 VOLUME /home
-ADD files/entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["shellinabox"]

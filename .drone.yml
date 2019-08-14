@@ -8,11 +8,22 @@ steps:
     repo: sybex/shellinabox
     tags:
       - latest
-      - 1.1.${DRONE_BUILD_NUMBER}
+      - 1.2.${DRONE_BUILD_NUMBER}
     username:
       from_secret: docker_username
     password:
       from_secret: docker_password
+
+- name: security                                                                                                                                                                                                   
+  image: jmccann/drone-clair:1                                                                                                                                                                                     
+  settings:                                                                                                                                                                                                        
+    url:                                                                                                                                                                                                           
+      from_secret: clair_url                                                                                                                                                                                       
+    username:                                                                                                                                                                                                      
+      from_secret: docker_username                                                                                                                                                                                 
+    password:                                                                                                                                                                                                      
+      from_secret: docker_password                                                                                                                                                                                 
+    scan_image: sybex/shellinabox:latest    
 
 - name: deploy
   image: sybex/drone-kubectl
