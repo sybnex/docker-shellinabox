@@ -16,8 +16,7 @@ ENV SIAB_USERCSS="Normal:+/etc/shellinabox/options-enabled/00+Black-on-White.css
   SIAB_PKGS=none \
   SIAB_SCRIPT=none
 
-COPY files/user-css.tar.gz /
-COPY files/entrypoint.sh /
+ADD files/user-css.tar.gz /
 
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
     chmod 755 /etc && \
@@ -42,5 +41,6 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
 
 EXPOSE 4200
 VOLUME /home
+COPY files/entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["shellinabox"]
