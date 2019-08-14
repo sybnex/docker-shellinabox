@@ -35,7 +35,7 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
     install -t /usr/local/bin drone && \
     curl -L -o klar https://github.com/optiopay/klar/releases/download/v2.4.0/klar-2.4.0-linux-amd64 && \
     chmod +x klar && mv klar /usr/bin/ && \
-    curl -L -o mc https://dl.min.io/client/mc/release/linux-amd64/mc
+    curl -L -o mc https://dl.min.io/client/mc/release/linux-amd64/mc && \
     chmod +x mc && mv mc /usr/bin/ && \
     echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
