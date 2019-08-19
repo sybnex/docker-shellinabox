@@ -16,7 +16,7 @@ ENV SIAB_USERCSS="Normal:+/etc/shellinabox/options-enabled/00+Black-on-White.css
   SIAB_PKGS=none \
   SIAB_SCRIPT=none
 
-COPY files/* /
+ADD files/user-css.tar.gz /
 
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
     chmod 755 /etc && \
@@ -36,9 +36,12 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
     curl -L -o klar1 https://github.com/optiopay/klar/releases/download/v1.5.0/klar-1.5.0-linux-amd64 && \
     curl -L -o klar2 https://github.com/optiopay/klar/releases/download/v2.4.0/klar-2.4.0-linux-amd64 && \
     chmod +x klar* && mv klar* /usr/bin/ && \
+    curl -L -o mc https://dl.min.io/client/mc/release/linux-amd64/mc && \
+    chmod +x mc && mv mc /usr/bin/ && \
     echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 EXPOSE 4200
 VOLUME /home
+COPY files/entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["shellinabox"]
