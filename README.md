@@ -1,11 +1,8 @@
-![alt text](https://badgen.net/badge/jenkins/sucess/green)
-![alt text](https://badgen.net/docker/pulls/sybex/shellinabox)
-![alt text](https://badgen.net/github/issues/sybnex/docker-shellinabox)
+# docker-shellinabox [![Build Status](https://drone.julina.ch/api/badges/sybnex/docker-shellinabox/status.svg)](https://drone.julina.ch/sybnex/docker-shellinabox) ![alt text](https://badgen.net/docker/pulls/sybex/shellinabox)
 
-# docker-shellinabox
 shellinabox for docker based on alpine linux
 
-including azure-cli
+including azure-cli, kubectl, helm, terraform, klar, mc, docker-in-docker
 
 ## Configuration
 ### Available Environment Variables
