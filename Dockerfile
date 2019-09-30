@@ -21,7 +21,7 @@ ADD files/user-css.tar.gz /
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
     chmod 755 /etc && \
     apk --no-cache add shadow certbot tmux util-linux coreutils grep bash tree bash-completion openssl curl openssh-client sudo shellinabox git py-pip docker && \
-    \# azure-cli
+    \
     apk --no-cache add --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev make && \
     pip install --upgrade pip && \
     pip install azure-cli --no-cache-dir && \
