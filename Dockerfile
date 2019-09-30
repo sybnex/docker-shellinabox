@@ -21,22 +21,28 @@ ADD files/user-css.tar.gz /
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
     chmod 755 /etc && \
     apk --no-cache add shadow certbot tmux util-linux coreutils grep bash tree bash-completion openssl curl openssh-client sudo shellinabox git py-pip docker && \
+    # azure-cli
     apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev make && \
     pip install --upgrade pip && \
     pip install azure-cli --no-cache-dir && \
     apk del --purge build && \
+    # kubectl & helm
     curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
-    chmod +x kubectl && mv kubectl /usr/bin/ && \
+    install -t /usr/local/bin kubectl && \
     curl -L https://git.io/get_helm.sh | bash && \
-    curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.12.6/terraform_0.12.6_linux_amd64.zip && \
+    # terraform
+    curl -L -o terraform.zip https://releases.hashicorp.com/terraform/0.12.6/terraform_0.12.9_linux_amd64.zip && \
     unzip terraform.zip && rm terraform.zip && \
-    chmod +x terraform && mv terraform /usr/bin/ && \
+    install -t /usr/local/bin terraform && \
+    # drone-cli
     curl -L https://github.com/drone/drone-cli/releases/download/v1.1.4/drone_linux_amd64.tar.gz | tar zx && \
     install -t /usr/local/bin drone && \
+    # clair-cli (klar)
     curl -L -o klar https://github.com/optiopay/klar/releases/download/v2.4.0/klar-2.4.0-linux-amd64 && \
     chmod +x klar && mv klar /usr/bin/ && \
+    # minio-cli
     curl -L -o mc https://dl.min.io/client/mc/release/linux-amd64/mc && \
-    chmod +x mc && mv mc /usr/bin/ && \
+    install -t /usr/local/bin mc && \
     echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 EXPOSE 4200
