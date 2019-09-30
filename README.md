@@ -1,6 +1,6 @@
 # docker-shellinabox [![Build Status](https://drone.julina.ch/api/badges/sybnex/docker-shellinabox/status.svg)](https://drone.julina.ch/sybnex/docker-shellinabox) ![alt text](https://badgen.net/docker/pulls/sybex/shellinabox)
 
-shellinabox for docker based on alpine linux latest
+shellinabox for docker based on alpine:latest
 
 including azure-cli, kubectl, helm, terraform, klar, mc, docker-in-docker
 
