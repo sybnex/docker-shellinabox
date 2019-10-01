@@ -87,8 +87,6 @@ spec:
         terminationMessagePolicy: File
         tty: true
       dnsPolicy: ClusterFirst
-      imagePullSecrets:
-      - name: dockerhub
       restartPolicy: Always
       securityContext: {}
       terminationGracePeriodSeconds: 30
@@ -108,3 +106,25 @@ spec:
   resources:
     requests:
       storage: 20Gi
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: shell-ingress
+  namespace: tools
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+    - shell.julina.ch
+    secretName: tls-shell-ingress
+  rules:
+  - host: shell.julina.ch
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: shell-service
+          servicePort: 4200
