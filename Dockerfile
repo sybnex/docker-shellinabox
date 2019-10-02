@@ -18,8 +18,7 @@ ENV SIAB_USERCSS="Normal:+/etc/shellinabox/options-enabled/00+Black-on-White.css
 
 ADD files/user-css.tar.gz /
 
-RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
-    chmod 755 /etc && \
+RUN echo 'http://mirror.leaseweb.com/alpine/latest-stable/main' > /etc/apk/repositories && \
     apk --no-cache add shadow certbot tmux util-linux coreutils grep bash tree bash-completion openssl curl openssh-client sudo shellinabox git py-pip && \
     apk --no-cache add --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev make && \
     pip install --upgrade pip && \
