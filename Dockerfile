@@ -25,7 +25,7 @@ RUN echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/main'       >  /etc/apk/repo
 
 RUN apk --no-cache add --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev make && \
     pip3 install --upgrade pip && \
-    pip3 install azure-cli --no-cache-dir && \
+    pip3 install azure-cli --no-cache-dir --default-timeout=300 && \
     apk del --purge build
 
 RUN curl -sSLO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
