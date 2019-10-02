@@ -2,13 +2,9 @@ kind: pipeline
 name: default
 
 steps:
-- name: caching
-  image: sybex/shellinabox
-  commands:
-    - echo "caching for layer ... done"
-
 - name: build
   image: plugins/docker
+  custom_dns: [ 8.8.8.8 ]
   settings:
     repo: sybex/shellinabox
     tags:
