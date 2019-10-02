@@ -24,7 +24,7 @@ RUN echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/main'       >  /etc/apk/repo
     apk --no-cache add shadow certbot tmux util-linux coreutils grep bash tree bash-completion openssl curl openssh-client sudo shellinabox git
 
 RUN apk --no-cache add --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev make && \
-    pip3 install --upgrade pip && \
+    pip3 install --upgrade pip --default-timeout=300 && \
     pip3 install azure-cli --no-cache-dir --default-timeout=300 && \
     apk del --purge build
 

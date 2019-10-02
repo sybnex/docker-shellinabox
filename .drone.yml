@@ -23,6 +23,7 @@ steps:
       from_secret: kubernetes_server_token
   commands:
     - kubectl apply -f deployment.yaml
+    - kubectl -n tools rollout status deploy/shell-deploy
 
 - name: notify
   image: appleboy/drone-telegram
