@@ -28,19 +28,19 @@ RUN apk --no-cache add --virtual=build gcc libffi-dev musl-dev openssl-dev pytho
     pip3 install azure-cli --no-cache-dir --default-timeout=300 && \
     apk del --purge build
 
-RUN curl -sSLO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
+RUN echo kube && curl -sSLO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     install -t /usr/local/bin kubectl && rm kubectl && \
-    curl -sSL https://git.io/get_helm.sh | bash && \
-    curl -sSL https://download.docker.com/linux/static/stable/x86_64/docker-19.03.2.tgz | tar zx && \
+    echo helm && curl -sSL https://git.io/get_helm.sh | bash && \
+    echo docker && curl -sSL https://download.docker.com/linux/static/stable/x86_64/docker-19.03.2.tgz | tar zx && \
     install -t /usr/local/bin docker/docker && rm -rf docker/ && \
-    curl -sSL -o terraform.zip https://releases.hashicorp.com/terraform/0.12.9/terraform_0.12.9_linux_amd64.zip && \
+    echo tf && curl -sSL -o terraform.zip https://releases.hashicorp.com/terraform/0.12.9/terraform_0.12.9_linux_amd64.zip && \
     unzip terraform.zip && rm terraform.zip && \
     install -t /usr/local/bin terraform && rm terraform && \
-    curl -sSL https://github.com/drone/drone-cli/releases/download/v1.1.4/drone_linux_amd64.tar.gz | tar zx && \
+    echo drone && curl -sSL https://github.com/drone/drone-cli/releases/download/v1.1.4/drone_linux_amd64.tar.gz | tar zx && \
     install -t /usr/local/bin drone && rm drone && \
-    curl -sSL -o klar https://github.com/optiopay/klar/releases/download/v2.4.0/klar-2.4.0-linux-amd64 && \
+    echo klar && curl -sSL -o klar https://github.com/optiopay/klar/releases/download/v2.4.0/klar-2.4.0-linux-amd64 && \
     install -t /usr/local/bin klar && rm klar && \
-    curl -sSL -o mc https://dl.min.io/client/mc/release/linux-amd64/mc && \
+    echo mc && curl -sSL -o mc https://dl.min.io/client/mc/release/linux-amd64/mc && \
     install -t /usr/local/bin mc && rm mc && \
     echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
