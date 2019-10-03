@@ -16,17 +16,12 @@ ENV SIAB_USERCSS="Normal:+/etc/shellinabox/options-enabled/00+Black-on-White.css
   SIAB_PKGS=none \
   SIAB_SCRIPT=none
 
-ADD files/user-css.tar.gz /
+COPY files/user-css.tar.gz /
 
 RUN echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/main'       >  /etc/apk/repositories && \
     echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/community' >>  /etc/apk/repositories && \
     echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/testing'   >>  /etc/apk/repositories && \
     apk --no-cache add shadow certbot tmux util-linux coreutils grep bash tree bash-completion openssl curl openssh-client sudo shellinabox git
-
-RUN apk --no-cache add --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev make && \
-    pip3 install --upgrade pip --default-timeout=300 && \
-    pip3 install azure-cli --no-cache-dir --default-timeout=300 && \
-    apk del --purge build
 
 RUN echo kube && curl -sSLO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     install -t /usr/local/bin kubectl && rm kubectl && \
@@ -43,6 +38,11 @@ RUN echo kube && curl -sSLO https://storage.googleapis.com/kubernetes-release/re
     echo mc && curl -sSL -o mc https://dl.min.io/client/mc/release/linux-amd64/mc && \
     install -t /usr/local/bin mc && rm mc && \
     echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+
+RUN apk --no-cache add --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev make && \
+    pip3 install --upgrade pip --default-timeout=300 && \
+    pip3 install azure-cli --no-cache-dir --default-timeout=300 && \
+    apk del --purge build
 
 EXPOSE 4200
 VOLUME /home
