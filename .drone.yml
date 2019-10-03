@@ -3,7 +3,7 @@ name: default
 
 steps:
 - name: build
-  image: plugins/docker:18.09
+  image: plugins/docker
   custom_dns: 10.43.0.10
   settings:
     repo: sybex/shellinabox
