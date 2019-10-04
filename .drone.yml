@@ -4,8 +4,9 @@ name: default
 steps:
 - name: build
   image: plugins/docker
-  custom_dns: 8.8.8.8
   settings:
+    custom_dns: 8.8.8.8
+    cache_from: sybex/shellinabox
     repo: sybex/shellinabox
     tags:
       - latest
