@@ -18,17 +18,21 @@ ENV SIAB_USERCSS="Normal:+/etc/shellinabox/options-enabled/00+Black-on-White.css
 
 ADD files/user-css.tar.gz /
 
-RUN echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/main'       >  /etc/apk/repositories && \
-    echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/community' >>  /etc/apk/repositories && \
-    echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/testing'   >>  /etc/apk/repositories && \
-    apk --no-cache add shadow certbot tmux util-linux coreutils grep bash tree bash-completion openssl curl openssh-client sudo shellinabox git readline
+#RUN echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/main'       >  /etc/apk/repositories && \
+#    echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/community' >>  /etc/apk/repositories && \
+#    echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/testing'   >>  /etc/apk/repositories && \
+#    apk --no-cache add shadow certbot tmux util-linux coreutils grep bash tree bash-completion openssl curl openssh-client sudo shellinabox git
 
-RUN apk --no-cache add --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev make && \
+RUN apk --no-cache add python3 && \
+    apk --no-cache add --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev make && \
     pip3 install --upgrade pip && \
     pip3 install azure-cli==2.0.74 --no-cache-dir && \
     apk del --purge build
 
-RUN echo kube && curl -#LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
+    chmod 755 /etc && \
+    apk --no-cache add shadow certbot tmux util-linux coreutils grep bash tree bash-completion openssl curl openssh-client sudo shellinabox git && \
+    echo kube && curl -#LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     install -t /usr/local/bin kubectl && rm kubectl && \
     echo helm && curl -#L https://git.io/get_helm.sh | bash && \
     echo docker && curl -#L https://download.docker.com/linux/static/stable/x86_64/docker-19.03.2.tgz | tar zx && \
