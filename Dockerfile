@@ -22,7 +22,7 @@ RUN echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/main'       >  /etc/apk/repo
     echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/community' >>  /etc/apk/repositories && \
     echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/testing'   >>  /etc/apk/repositories
 
-RUN apk --no-cache add python3 py3-pynacl && \
+RUN apk --no-cache add python3 py3-pynacl py3-cryptography py3-bcrypt && \
     apk --no-cache add --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev make && \
     pip3 install --upgrade pip && \
     pip3 install azure-cli==2.0.74 --no-cache-dir && \
@@ -35,7 +35,7 @@ RUN chmod 755 /etc && \
     echo helm && curl -#L https://git.io/get_helm.sh | bash && \
     echo docker && curl -#L https://download.docker.com/linux/static/stable/x86_64/docker-19.03.2.tgz | tar zx && \
     install -t /usr/local/bin docker/docker && rm -rf docker/ && \
-    echo tf && curl -#L -o terraform.zip https://releases.hashicorp.com/terraform/0.12.9/terraform_0.12.9_linux_amd64.zip && \
+    echo tf && curl -#L -o terraform.zip https://releases.hashicorp.com/terraform/0.12.10/terraform_0.12.10_linux_amd64.zip && \
     unzip terraform.zip && rm terraform.zip && \
     install -t /usr/local/bin terraform && rm terraform && \
     echo drone && curl -#L https://github.com/drone/drone-cli/releases/download/v1.1.4/drone_linux_amd64.tar.gz | tar zx && \
