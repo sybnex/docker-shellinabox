@@ -5,6 +5,8 @@ steps:
 - name: build
   image: plugins/docker
   settings:
+    cache_from: sybex/shellinabox
+    custom_dns: 8.8.8.8
     repo: sybex/shellinabox
     tags:
       - latest
@@ -13,17 +15,6 @@ steps:
       from_secret: docker_username
     password:
       from_secret: docker_password
-
-- name: security
-  image: jmccann/drone-clair:1        
-  settings:     
-    url:     
-      from_secret: clair_url     
-    username:   
-      from_secret: docker_username   
-    password:   
-      from_secret: docker_password   
-    scan_image: sybex/shellinabox:latest    
 
 - name: deploy
   image: sybex/drone-kubectl
@@ -34,6 +25,7 @@ steps:
       from_secret: kubernetes_server_token
   commands:
     - kubectl apply -f deployment.yaml
+    - kubectl -n tools rollout status deploy/shell-deploy
 
 - name: notify
   image: appleboy/drone-telegram
