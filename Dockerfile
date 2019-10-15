@@ -24,9 +24,10 @@ RUN echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/main'       >  /etc/apk/repo
 
 RUN apk --no-cache add python3 py3-pynacl py3-cryptography py3-bcrypt py3-psutil && \
     pip3 install --upgrade pip && \
-    pip3 install azure-cli --no-cache-dir
+    pip3 install azure-cli==2.0.75 --no-cache-dir
 
 RUN chmod 755 /etc && \
+    if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
     apk --no-cache add shadow certbot tmux util-linux coreutils grep bash tree bash-completion openssl curl openssh-client sudo shellinabox git && \
     echo kube && curl -#LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
     install -t /usr/local/bin kubectl && rm kubectl && \
