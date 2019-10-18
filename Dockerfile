@@ -34,7 +34,7 @@ RUN chmod 755 /etc && \
     echo helm && curl -#L https://git.io/get_helm.sh | bash && \
     echo docker && curl -#L https://download.docker.com/linux/static/stable/x86_64/docker-19.03.3.tgz | tar zx && \
     install -t /usr/local/bin docker/docker && rm -rf docker/ && \
-    echo tf && curl -#L -o terraform.zip https://releases.hashicorp.com/terraform/0.12.10/terraform_0.12.10_linux_amd64.zip && \
+    echo tf && curl -#L -o terraform.zip https://releases.hashicorp.com/terraform/0.12.12/terraform_0.12.12_linux_amd64.zip && \
     unzip terraform.zip && rm terraform.zip && \
     install -t /usr/local/bin terraform && rm terraform && \
     echo drone && curl -#L https://github.com/drone/drone-cli/releases/download/v1.2.0/drone_linux_amd64.tar.gz | tar zx && \
