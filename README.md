@@ -3,7 +3,7 @@
 shellinabox for docker based on alpine:latest
 
 
-including azure-cli, kubectl, helm, terraform, klar, mc, docker-in-docker with single docker cli
+including azure-cli, kubectl, helm, terraform, klar, mc, docker-in-docker with single docker cli, git
 
 ## Configuration
 ### Available Environment Variables
