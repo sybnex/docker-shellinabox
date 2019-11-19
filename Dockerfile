@@ -28,6 +28,7 @@ RUN apk --no-cache add python3 py3-pynacl py3-cryptography py3-bcrypt py3-psutil
 
 RUN chmod 755 /etc && \
     echo 'http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
+    echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
     if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
     apk --no-cache add shadow certbot tmux util-linux coreutils grep bash tree bash-completion openssl curl openssh-client sudo shellinabox gettext \
                        git docker-cli terraform drone-cli minio-client && \
