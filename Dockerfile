@@ -22,11 +22,13 @@ ADD files/user-css.tar.gz /
 #    echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/community' >>  /etc/apk/repositories && \
 #    echo 'http://pkg.adfinis-sygroup.ch/alpine/edge/testing'   >>  /etc/apk/repositories
 
+ARG AZURECLI_VERSION=2.0.77
+ARG TERRAFORM_VERSION=0.12.17
+
 RUN apk --no-cache add python3 py3-pynacl py3-cryptography py3-bcrypt py3-psutil && \
     pip3 install --upgrade pip && \
-    pip3 install azure-cli==2.0.77 --no-cache-dir
+    pip3 install azure-cli==$AZURECLI_VERSION --no-cache-dir
 
-ARG TERRAFORM_VERSION=0.12.16
 RUN chmod 755 /etc && \
     echo 'http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
     echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
