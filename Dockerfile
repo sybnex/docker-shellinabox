@@ -18,7 +18,7 @@ ENV SIAB_USERCSS="Normal:+/etc/shellinabox/options-enabled/00+Black-on-White.css
 
 ADD files/user-css.tar.gz /
 
-ARG AZURECLI_VERSION=2.0.77
+ARG AZURECLI_VERSION=2.0.79
 ARG TERRAFORM_VERSION=0.12.18
 
 RUN apk --no-cache add python3 py3-pynacl py3-cryptography py3-bcrypt py3-psutil && \
